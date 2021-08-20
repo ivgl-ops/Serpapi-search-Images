@@ -25,7 +25,6 @@ class MainActivity : AppCompatActivity() {
         val userMessage = findViewById<TextView>(R.id.user_message)
         val textInField = textField.text
 
-
         fun CreateUserResponce(textInField: String){
             val request = ServiceBuilder.buildService(SerpapiApi::class.java)
             val call = request.getImages(

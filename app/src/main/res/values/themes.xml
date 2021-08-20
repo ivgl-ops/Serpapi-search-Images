@@ -12,6 +12,8 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <item name="android:windowContentTransitions">true</item>
+        <item name="android:fragmentSharedElementEnterTransition">@transition/shared_transition</item>
+        <item name="android:windowSharedElementExitTransition">@transition/shared_transition</item>
         <!-- Customize your theme here. -->
     </style>
 

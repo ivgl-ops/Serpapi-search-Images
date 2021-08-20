@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFFFFF"
     tools:context=".ui.DetailGoogleImage">
 
     <RelativeLayout
@@ -15,60 +16,62 @@
             android:id="@+id/rel_toolbar_wb"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-            <include layout="@layout/toolbar_wb"/>
+
+            <include layout="@layout/toolbar_wb" />
 
         </RelativeLayout>
 
 
         <RelativeLayout
-            android:layout_below="@+id/rel_toolbar_wb"
+            android:id="@+id/rel_googleImg"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/rel_googleImg">
+            android:layout_below="@+id/rel_toolbar_wb">
 
             <ImageView
-                android:layout_marginTop="?attr/actionBarSize"
                 android:id="@+id/detail_googleImage"
                 android:layout_width="match_parent"
                 android:layout_height="300dp"
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
-                android:adjustViewBounds="true"
-                />
+                android:layout_marginTop="?attr/actionBarSize"
+                android:adjustViewBounds="true" />
         </RelativeLayout>
 
         <RelativeLayout
-            android:layout_below="@+id/rel_googleImg"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_below="@+id/rel_googleImg">
 
             <TextView
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="10dp"
                 android:id="@+id/textView_detail_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
                 android:text="Title: "
-                android:textSize="20dp"/>
+                android:textSize="20dp" />
 
             <TextView
-                android:layout_margin="10dp"
-                android:layout_below="@+id/textView_detail_title"
                 android:id="@+id/textView_detail_source"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_below="@+id/textView_detail_title"
+                android:layout_margin="10dp"
                 android:text="Source: "
-                android:textSize="20dp"/>
+                android:textSize="20dp" />
 
             <Button
                 android:id="@+id/button_detail"
-                android:layout_marginVertical="10dp"
-                android:layout_marginHorizontal="10dp"
-                android:layout_below="@+id/textView_detail_source"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:background="@drawable/layout_button"
-                android:text="View picture In browser">
+                android:layout_below="@+id/textView_detail_source"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginVertical="10dp"
+                android:background="@drawable/button_press"
+                android:text="View picture In browser"
+                app:backgroundTint="@null">
+
             </Button>
 
         </RelativeLayout>
