@@ -28,7 +28,7 @@ class MainActivity : AppCompatActivity() {
 
         fun CreateUserResponce(textInField: String){
             val request = ServiceBuilder.buildService(SerpapiApi::class.java)
-            val call = request.getMovies(
+            val call = request.getImages(
                 q = textInField.toString(), tmb = "isch",
                 api_key = "a886ad1149ef5bc9c125857634bf405c1f6d198d40c5a9ebbd1a24d736ea37a6"
             )

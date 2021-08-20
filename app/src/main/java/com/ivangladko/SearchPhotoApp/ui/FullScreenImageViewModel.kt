@@ -14,7 +14,7 @@ class FullScreenImageViewModel : AppCompatActivity() {
         val googleUrl = intent.getStringExtra("googlePhoto")
         val googleImage = findViewById<ImageView>(R.id.googleImage)
         Glide.with(this).load(googleUrl).into(googleImage)
-
+        println(googleUrl.toString())
         btnBack.setOnClickListener {
             finish()
         }

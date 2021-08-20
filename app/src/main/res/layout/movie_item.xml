@@ -18,52 +18,87 @@
         android:clickable="true">
 
         <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:background="@drawable/layout_bg"
-            android:padding="10dp"
-            >
+            android:id="@+id/topmost_elemrnt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-            <ImageView
-                android:id="@+id/google_photo"
+            <RelativeLayout
+                android:id="@+id/info_layout"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:layout_centerHorizontal="true"
-                android:adjustViewBounds="true"
-                android:contentDescription="Google Image"
-                android:scaleType="fitCenter" />
+                android:layout_height="wrap_content">
 
-            <TextView
-                android:id="@+id/google_title"
-                android:layout_width="wrap_content"
+                <TextView
+                    android:id="@+id/nameofSite"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="10dp"
+                    android:text="Name of the site"
+                    android:textColor="@android:color/black"
+                    android:textSize="20sp"
+                    >
+
+                </TextView>
+
+                <ImageButton
+                    android:layout_centerVertical="true"
+                    android:id="@+id/btn_info"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/ic_baseline_info_24"
+                    android:contentDescription="info"
+                    android:layout_alignParentRight="true">
+                </ImageButton>
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+
+                android:id="@+id/rel_layout"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/google_photo"
-                android:layout_margin="5dp"
-                android:text="Title : "
-                android:textSize="20sp" />
+                android:layout_below="@+id/info_layout"
+                android:padding="10dp"
+                >
 
-            <TextView
-                android:id="@+id/google_overview"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/google_title"
-                android:layout_margin="5dp"
-                android:textSize="15sp"
-                android:text="OverView : " />
+                <ImageView
+                    android:transitionName="image_small"
+                    android:id="@+id/google_photo"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:layout_centerHorizontal="true"
+                    android:adjustViewBounds="true"
+                    android:contentDescription="Google Image"
+                    android:scaleType="fitCenter" />
 
-            <Button
-                android:id="@+id/button_webView"
-                android:layout_marginVertical="10dp"
-                android:textAllCaps="false"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/google_overview"
-                android:background="@drawable/button_press"
-                android:textSize="15sp"
-                android:textColor="@color/white"
-                android:text="View in Browser"
-                android:paddingHorizontal="15dp"/>
 
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/google_photo">
+
+                    <Button
+                        android:id="@+id/button_webView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginVertical="10dp"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginLeft="12dp"
+                        android:background="@drawable/button_press"
+                        android:paddingHorizontal="15dp"
+                        android:text="View in Browser"
+                        android:textAllCaps="false"
+                        android:textColor="@color/white"
+                        android:textSize="15sp" />
+
+                </RelativeLayout>
+
+
+            </RelativeLayout>
 
         </RelativeLayout>
 

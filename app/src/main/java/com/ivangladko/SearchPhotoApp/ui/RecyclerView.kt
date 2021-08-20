@@ -6,10 +6,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.ivangladko.SearchPhotoApp.ui.DetailGoogleImage
 import com.ivangladko.SearchPhotoApp.ui.FullScreenImageViewModel
 import com.ivangladko.SearchPhotoApp.ui.WebViewActivityViewModel
 
@@ -20,7 +22,6 @@ class PhotoAdapter(val photos: List<Result>): RecyclerView.Adapter<PhotoViewHold
         val view = LayoutInflater.from(parent.context).inflate(R.layout.movie_item, parent, false)
         return PhotoViewHolder(view)
     }
-
 
     override fun getItemCount(): Int {
         return photos.size
@@ -35,11 +36,15 @@ class PhotoAdapter(val photos: List<Result>): RecyclerView.Adapter<PhotoViewHold
 class PhotoViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
 
     private val photo:ImageView = itemView.findViewById(R.id.google_photo)
-    private val title:TextView = itemView.findViewById(R.id.google_title)
+    private val title:TextView = itemView.findViewById(R.id.nameofSite)
     private val btn: Button = itemView.findViewById(R.id.button_webView)
-    private val overview:TextView = itemView.findViewById(R.id.google_overview)
+    private val btnInfo: ImageButton = itemView.findViewById(R.id.btn_info)
+
+    //val overview:TextView = itemView.findViewById(R.id.google_overview)
     private var googlePhoto: String = ""
     private var googleUrl: String = ""
+    private var googleTitle: String =""
+
     init {
         btn.setOnClickListener{
             val i = Intent(btn.context, WebViewActivityViewModel::class.java)
@@ -47,21 +52,37 @@ class PhotoViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
             btn.context.startActivity(i)
         }
     }
+
     init{
-        photo.setOnClickListener {
+        photo.setOnClickListener() {
+
             val i = Intent(photo.context, FullScreenImageViewModel::class.java)
             i.putExtra("googlePhoto", googlePhoto.toString())
+
             photo.context.startActivity(i)
         }
+    }
+
+    init{
+        btnInfo.setOnClickListener {
+            val i = Intent(btnInfo.context, DetailGoogleImage::class.java)
+            i.putExtra("googlePhoto", googlePhoto.toString())
+            i.putExtra("googleTitle", googleTitle.toString())
+            i.putExtra("googleUrl", googleUrl.toString())
+            btnInfo.context.startActivity(i)
+        }
+
     }
 
     @SuppressLint("SetTextI18n")
     fun bind(photos: Result) {
         Glide.with(itemView.context).load("${photos.thumbnail}").into(photo)
-        title.text =  photos.title
-        overview.text ="Site: " + photos.source
+        title.text =  photos.source
+        //overview.text ="Site: " + photos.source
         googlePhoto = photos.thumbnail.toString()
         googleUrl = photos.link.toString()
+        googleTitle = "Title: " +  photos.title.toString()
+
     }
 }
 

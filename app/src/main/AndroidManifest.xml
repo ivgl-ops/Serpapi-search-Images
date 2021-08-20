@@ -11,15 +11,21 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Movie">
+        <activity android:name=".ui.DetailGoogleImage"></activity>
+        <activity
+            android:name=".ui.DetailImageViewModel"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_detail_image_view_model"
+            android:theme="@style/Theme.Movie.Fullscreen" />
         <activity
             android:name="com.FullscreenActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_fullscreen"
-            android:theme="@style/Theme.Movie.Fullscreen"></activity>
-        <activity android:name="com.ivangladko.SearchPhotoApp.ui.WebViewActivityViewModel" />
-        <activity android:name="com.ivangladko.SearchPhotoApp.ui.FullScreenImageViewModel" />
+            android:theme="@style/Theme.Movie.Fullscreen" />
+        <activity android:name=".ui.WebViewActivityViewModel" />
+        <activity android:name=".ui.FullScreenImageViewModel" />
         <activity
-            android:name="com.ivangladko.SearchPhotoApp.MainActivity"
+            android:name=".MainActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
