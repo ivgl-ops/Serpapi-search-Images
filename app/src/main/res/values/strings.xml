@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Movies</string>
+    <string name="app_name">SearchApp</string>
     <string name="api_key">61c7b8158954c0a0aeb06cb4b4b31810ccd1268aacb25224fd37575509404365</string>
     <string name="title_activity_fullscreen">FullscreenActivity</string>
     <string name="dummy_button">Dummy Button</string>

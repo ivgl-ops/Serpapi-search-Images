@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
@@ -37,6 +37,7 @@
                     android:text="Name of the site"
                     android:textColor="@android:color/black"
                     android:textSize="20sp"
+
                     >
 
                 </TextView>
@@ -91,6 +92,8 @@
                         android:layout_marginLeft="12dp"
                         android:background="@drawable/button_press"
                         android:paddingHorizontal="15dp"
+                        app:backgroundTint="@null"
+
                         android:text="View in Browser"
                         android:textAllCaps="false"
                         android:textColor="@color/white"

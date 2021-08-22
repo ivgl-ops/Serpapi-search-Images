@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.ivangladko.SearchPhotoApp">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -12,7 +13,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Movie">
-        <activity android:name=".ui.DetailGoogleImage"></activity>
+        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".ui.DetailGoogleImage" />
         <activity
             android:name=".ui.DetailImageViewModel"
             android:configChanges="orientation|keyboardHidden|screenSize"
@@ -26,10 +28,10 @@
         <activity android:name=".ui.WebViewActivityViewModel" />
         <activity android:name=".ui.FullScreenImageViewModel" />
         <activity android:name=".ui.Fragment.FragmentImage" />
-
         <activity
-            android:name=".MainActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+            android:name=".StartActivityView"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            tools:ignore="DuplicateActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

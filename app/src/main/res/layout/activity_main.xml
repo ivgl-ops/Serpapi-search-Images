@@ -7,32 +7,25 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
     <include layout="@layout/toolbar" />
-    
 
-    <TextView
+
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Popular Photos"
-        android:layout_marginTop="75dp"
-        android:id="@+id/title"
-        android:textSize="20sp"/>
+        android:visibility="visible">
 
-    <TextView
-        android:textSize="17sp"
-        android:id="@+id/user_message"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/title"
-        android:layout_centerInParent="true"
-        android:layout_marginVertical="30dp"
-        android:text="To find an image, enter your request\nin the field and click on the search button 😉" />
-
+    </ProgressBar>
     <androidx.recyclerview.widget.RecyclerView
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:layout_below="@+id/title"
+
+        android:layout_below="@+id/toolbar"
         android:id="@+id/recyclerView"/>
 
 

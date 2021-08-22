@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isInvisible
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.ivangladko.SearchPhotoApp.*
@@ -19,11 +21,13 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        val userrequest = intent.getStringExtra("UserRequest")
         val btn = findViewById<ImageView>(R.id.button_toolbar)
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
         val textField = findViewById<EditText>(R.id.toolbar_field)
-        val userMessage = findViewById<TextView>(R.id.user_message)
+        val progressbar = findViewById<ProgressBar>(R.id.progress_bar)
         val textInField = textField.text
+        textField.setHint(userrequest)
 
         fun CreateUserResponce(textInField: String){
             val request = ServiceBuilder.buildService(SerpapiApi::class.java)
@@ -35,6 +39,7 @@ class MainActivity : AppCompatActivity() {
                 override fun onResponse(call: Call<SerpapiData>, response: Response<SerpapiData>) {
                     if (response.isSuccessful) {
                         recyclerView?.apply {
+                            progressbar.setVisibility(View.INVISIBLE);
                             setHasFixedSize(true)
                             layoutManager = LinearLayoutManager(this@MainActivity)
                             adapter = PhotoAdapter(response.body()!!.images_results)
@@ -49,10 +54,12 @@ class MainActivity : AppCompatActivity() {
 
         }
 
+        CreateUserResponce(userrequest.toString())
         btn.setOnClickListener {
-            userMessage.setVisibility(View.GONE);
+            textField.setHint(textInField.toString())
             CreateUserResponce(textInField.toString())
         }
+
     }
 }
 
