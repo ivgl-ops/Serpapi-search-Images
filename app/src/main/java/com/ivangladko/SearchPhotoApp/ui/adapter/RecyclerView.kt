@@ -16,8 +16,7 @@ import com.ivangladko.SearchPhotoApp.ui.images.DetailImageViewModel
 import com.ivangladko.SearchPhotoApp.ui.fragment.FragmentImage
 import com.ivangladko.SearchPhotoApp.ui.images.MainActivityViewModel
 import com.ivangladko.SearchPhotoApp.ui.images.WebViewActivityViewModel
-import dagger.Provides
-import javax.inject.Inject
+
 
 
 class PhotoAdapter(val photos: List<Result>): RecyclerView.Adapter<PhotoViewHolder>() {

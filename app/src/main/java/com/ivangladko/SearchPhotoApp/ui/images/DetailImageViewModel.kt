@@ -14,7 +14,6 @@ import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.ivangladko.SearchPhotoApp.R
-import dagger.Provides
 
 class DetailImageViewModel : AppCompatActivity() {
     @RequiresApi(Build.VERSION_CODES.O)

@@ -2,7 +2,6 @@
 
 import com.ivangladko.SearchPhotoApp.SerpapiData
 import com.ivangladko.SearchPhotoApp.utils.Constants.END_POINT
-import dagger.Component
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Query
