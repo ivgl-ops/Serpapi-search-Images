@@ -1,22 +1,21 @@
-package com.ivangladko.SearchPhotoApp
+package com.ivangladko.SearchPhotoApp.ui.images
 
 import android.os.Bundle
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.isInvisible
-import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.ivangladko.SearchPhotoApp.*
 import com.ivangladko.SearchPhotoApp.api.SerpapiApi
 import com.ivangladko.SearchPhotoApp.api.ServiceBuilder
+import com.ivangladko.SearchPhotoApp.utils.Constants.API_KEY
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 
-class MainActivity : AppCompatActivity() {
+class MainActivityViewModel : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,7 +32,7 @@ class MainActivity : AppCompatActivity() {
             val request = ServiceBuilder.buildService(SerpapiApi::class.java)
             val call = request.getImages(
                 q = textInField.toString(), tmb = "isch",
-                api_key = "a886ad1149ef5bc9c125857634bf405c1f6d198d40c5a9ebbd1a24d736ea37a6"
+                api_key = API_KEY
             )
             call.enqueue(object : Callback<SerpapiData> {
                 override fun onResponse(call: Call<SerpapiData>, response: Response<SerpapiData>) {
@@ -41,14 +40,14 @@ class MainActivity : AppCompatActivity() {
                         recyclerView?.apply {
                             progressbar.setVisibility(View.INVISIBLE);
                             setHasFixedSize(true)
-                            layoutManager = LinearLayoutManager(this@MainActivity)
+                            layoutManager = LinearLayoutManager(this@MainActivityViewModel)
                             adapter = PhotoAdapter(response.body()!!.images_results)
                         }
                     }
                 }
 
                 override fun onFailure(call: Call<SerpapiData>, t: Throwable) {
-                    Toast.makeText(this@MainActivity, "${t.message}", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@MainActivityViewModel, "${t.message}", Toast.LENGTH_SHORT).show()
                 }
             })
 

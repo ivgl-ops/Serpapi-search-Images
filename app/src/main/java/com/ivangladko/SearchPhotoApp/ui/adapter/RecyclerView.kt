@@ -12,9 +12,12 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.ivangladko.SearchPhotoApp.ui.DetailGoogleImage
-import com.ivangladko.SearchPhotoApp.ui.Fragment.FragmentImage
-import com.ivangladko.SearchPhotoApp.ui.WebViewActivityViewModel
+import com.ivangladko.SearchPhotoApp.ui.images.DetailImageViewModel
+import com.ivangladko.SearchPhotoApp.ui.fragment.FragmentImage
+import com.ivangladko.SearchPhotoApp.ui.images.MainActivityViewModel
+import com.ivangladko.SearchPhotoApp.ui.images.WebViewActivityViewModel
+import dagger.Provides
+import javax.inject.Inject
 
 
 class PhotoAdapter(val photos: List<Result>): RecyclerView.Adapter<PhotoViewHolder>() {
@@ -34,15 +37,14 @@ class PhotoAdapter(val photos: List<Result>): RecyclerView.Adapter<PhotoViewHold
     }
 }
 
-class PhotoViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
+
+class PhotoViewHolder (itemView: View): RecyclerView.ViewHolder(itemView){
 
     private val photo:ImageView = itemView.findViewById(R.id.google_photo)
     private val title:TextView = itemView.findViewById(R.id.nameofSite)
     private val btn: Button = itemView.findViewById(R.id.button_webView)
     private val btnInfo: ImageButton = itemView.findViewById(R.id.btn_info)
-    private val mainActivity = MainActivity()
 
-    //val overview:TextView = itemView.findViewById(R.id.google_overview)
     private var googlePhoto: String = ""
     private var googleUrl: String = ""
     private var googleTitle: String =""
@@ -59,7 +61,7 @@ class PhotoViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
         photo.setOnClickListener{
             val i = Intent(photo.context, FragmentImage::class.java)
             i.putExtra("googlePhoto", googlePhoto.toString())
-            val b = ActivityOptions.makeSceneTransitionAnimation((photo.context as MainActivity))
+            val b = ActivityOptions.makeSceneTransitionAnimation((photo.context as MainActivityViewModel))
             photo.context.startActivity(i, b.toBundle())
         }
     }
@@ -67,14 +69,12 @@ class PhotoViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
 
     init{
         btnInfo.setOnClickListener {
-            val i = Intent(btnInfo.context, DetailGoogleImage::class.java)
+            val i = Intent(btnInfo.context, DetailImageViewModel::class.java)
             i.putExtra("googlePhoto", googlePhoto.toString())
             i.putExtra("googleTitle", googleTitle.toString())
             i.putExtra("googleSource", title.text.toString())
             i.putExtra("targetUrl", googleUrl.toString())
             btnInfo.context.startActivity(i)
-            println(googleUrl)
-
         }
 
     }

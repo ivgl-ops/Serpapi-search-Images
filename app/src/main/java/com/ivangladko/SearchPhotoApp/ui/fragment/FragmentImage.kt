@@ -1,4 +1,4 @@
-package com.ivangladko.SearchPhotoApp.ui.Fragment
+package com.ivangladko.SearchPhotoApp.ui.fragment
 
 import android.os.Bundle
 import android.widget.ImageView

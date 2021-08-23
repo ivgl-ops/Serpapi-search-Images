@@ -1,24 +1,22 @@
-package com.ivangladko.SearchPhotoApp.ui
+package com.ivangladko.SearchPhotoApp.ui.images
 
 import android.annotation.SuppressLint
 import android.os.Build
 import android.os.Bundle
-import android.os.Handler
-import android.view.MotionEvent
 import android.view.View
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import android.widget.Button
 import android.widget.ImageView
-import android.widget.LinearLayout
+import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.ivangladko.SearchPhotoApp.R
-import org.w3c.dom.Text
+import dagger.Provides
 
-class DetailGoogleImage : AppCompatActivity() {
+class DetailImageViewModel : AppCompatActivity() {
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -27,6 +25,7 @@ class DetailGoogleImage : AppCompatActivity() {
         setContentView(R.layout.activity_detail_google_image)
         val btnBack = findViewById<ImageView>(R.id.btn_back)
         val btnDetail = findViewById<Button>(R.id.button_detail)
+
         val googleUrl = intent.getStringExtra("googlePhoto")
         val googletitle = intent.getStringExtra("googleTitle")
         val googleSource = intent.getStringExtra("googleSource")
@@ -53,11 +52,13 @@ class DetailGoogleImage : AppCompatActivity() {
     @RequiresApi(Build.VERSION_CODES.O)
     private fun wbViewSetup(){
         setContentView(R.layout.activity_web_view_detail)
+        val progress_bar = findViewById<ProgressBar>(R.id.wb_detail_progress_bar)
         val googleUrl = intent.getStringExtra("targetUrl")
         val wb_view = findViewById<WebView>(R.id.wb_view_detail)
         val btnBack = findViewById<ImageView>(R.id.btn_back)
         wb_view.webViewClient = WebViewClient()
         wb_view.apply {
+            progress_bar.setVisibility(View.INVISIBLE)
             settings.javaScriptEnabled = true
             settings.safeBrowsingEnabled = true
             settings.loadWithOverviewMode = true
