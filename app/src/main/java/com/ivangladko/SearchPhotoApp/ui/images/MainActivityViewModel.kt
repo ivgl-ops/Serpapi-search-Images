@@ -1,9 +1,11 @@
 package com.ivangladko.SearchPhotoApp.ui.images
 
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.ivangladko.SearchPhotoApp.*
@@ -20,7 +22,9 @@ class MainActivityViewModel : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
         val userrequest = intent.getStringExtra("UserRequest")
+
         val btn = findViewById<ImageView>(R.id.button_toolbar)
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
         val textField = findViewById<EditText>(R.id.toolbar_field)
@@ -34,6 +38,7 @@ class MainActivityViewModel : AppCompatActivity() {
                 q = textInField.toString(), tmb = "isch",
                 api_key = API_KEY
             )
+
             call.enqueue(object : Callback<SerpapiData> {
                 override fun onResponse(call: Call<SerpapiData>, response: Response<SerpapiData>) {
                     if (response.isSuccessful) {
@@ -47,18 +52,40 @@ class MainActivityViewModel : AppCompatActivity() {
                 }
 
                 override fun onFailure(call: Call<SerpapiData>, t: Throwable) {
-                    Toast.makeText(this@MainActivityViewModel, "${t.message}", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@MainActivityViewModel, "${t.message}", Toast.LENGTH_SHORT)
+                        .show()
                 }
             })
 
         }
 
         CreateUserResponce(userrequest.toString())
+
+        val preferences = PreferenceManager.getDefaultSharedPreferences(this)
+        preferences.edit()
+            .putString("UserRequestPhoto", userrequest)
+            .apply()
+        preferences.edit().remove("textInField").apply()
         btn.setOnClickListener {
+
             textField.setHint(textInField.toString())
             CreateUserResponce(textInField.toString())
-        }
+            val nextPhoto = PreferenceManager.getDefaultSharedPreferences(this)
+            var k = 0
+            if (k  == 0 ){
+                nextPhoto.edit()
+                    .putString("textInField", textInField.toString())
+                    .apply()
+                k = k + 0
+            }
 
+            else{
+                nextPhoto.edit().remove("textInField").apply()
+                nextPhoto.edit()
+                    .putString("textInField", textInField.toString())
+                    .apply()
+            }
+        }
     }
 }
 

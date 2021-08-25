@@ -5,6 +5,7 @@ data class SerpapiData(
 )
 
 data class Result(
+    val position: Int?,
     val thumbnail: String?,
     val original: String?,
     val title: String?,

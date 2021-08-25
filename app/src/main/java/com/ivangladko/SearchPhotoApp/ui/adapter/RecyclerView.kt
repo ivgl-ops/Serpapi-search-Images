@@ -2,7 +2,9 @@ package com.ivangladko.SearchPhotoApp
 
 import android.annotation.SuppressLint
 import android.app.ActivityOptions
+import android.content.Context
 import android.content.Intent
+import android.preference.PreferenceManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -20,6 +22,22 @@ import com.ivangladko.SearchPhotoApp.ui.images.WebViewActivityViewModel
 
 
 class PhotoAdapter(val photos: List<Result>): RecyclerView.Adapter<PhotoViewHolder>() {
+
+    fun getImage(): ArrayList<String> {
+        val imageList = ArrayList<String>()
+        for(photo in photos){
+            imageList.add(photo.thumbnail.toString())
+        }
+        return imageList
+    }
+
+    fun getPositionInt(): ArrayList<Int>{
+        val positionArray = ArrayList<Int>()
+        for(photo in photos){
+            photo.position?.let { positionArray.add(it.toInt()) }
+        }
+        return positionArray
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PhotoViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.photo_item, parent, false)
@@ -47,6 +65,7 @@ class PhotoViewHolder (itemView: View): RecyclerView.ViewHolder(itemView){
     private var googlePhoto: String = ""
     private var googleUrl: String = ""
     private var googleTitle: String =""
+    private var positionInt: Int = 0
 
     init {
         btn.setOnClickListener{
@@ -59,7 +78,7 @@ class PhotoViewHolder (itemView: View): RecyclerView.ViewHolder(itemView){
     init{
         photo.setOnClickListener{
             val i = Intent(photo.context, FragmentImage::class.java)
-            i.putExtra("googlePhoto", googlePhoto.toString())
+            i.putExtra("ThisPositionImage", positionInt)
             val b = ActivityOptions.makeSceneTransitionAnimation((photo.context as MainActivityViewModel))
             photo.context.startActivity(i, b.toBundle())
         }
@@ -82,10 +101,10 @@ class PhotoViewHolder (itemView: View): RecyclerView.ViewHolder(itemView){
     fun bind(photos: Result) {
         Glide.with(itemView.context).load("${photos.thumbnail}").into(photo)
         title.text = "Source: " +  photos.source
-        //overview.text ="Site: " + photos.source
         googlePhoto = photos.thumbnail.toString()
         googleUrl = photos.link.toString()
         googleTitle = "Title: " +  photos.title.toString()
+        positionInt = photos.position!!
 
     }
 }
